@@ -19,7 +19,7 @@ export default async function Navbar() {
   const cart = await getCart();
 
   return (
-    <div className="bg-base-100">
+    <div className="sticky top-0 z-10 bg-base-100">
       <div className="navbar mx-auto max-w-7xl flex-col gap-2 sm:flex-row">
         <div className="flex-1">
           <Link href="/" className="btn-ghost btn text-xl normal-case">
