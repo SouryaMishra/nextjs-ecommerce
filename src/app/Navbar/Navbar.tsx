@@ -34,11 +34,7 @@ export default async function Navbar() {
         <div className="flex-none gap-2">
           <form action={searchProducts}>
             <div className="form-control">
-              <input
-                name="searchQuery"
-                placeholder="Search"
-                className="input-bordered input w-full min-w-[100px]"
-              />
+              <input name="searchQuery" placeholder="Search" className="input-bordered input w-full min-w-[100px]" />
             </div>
           </form>
           <ShoppingCartButton cart={cart} />

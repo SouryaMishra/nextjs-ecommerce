@@ -11,10 +11,7 @@ interface ICartEntryProps {
   setProductQuantity: any;
 }
 
-export default function CartEntry({
-  cartItem: { product, quantity },
-  setProductQuantity,
-}: ICartEntryProps) {
+export default function CartEntry({ cartItem: { product, quantity }, setProductQuantity }: ICartEntryProps) {
   const [isPending, startTransition] = useTransition();
 
   const quantityOptions: JSX.Element[] = [];
@@ -29,13 +26,7 @@ export default function CartEntry({
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3">
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          width={200}
-          height={200}
-          className="rounded-lg"
-        />
+        <Image src={product.imageUrl} alt={product.name} width={200} height={200} className="rounded-lg" />
         <div>
           <Link href={"/products/" + product.id} className="text-lg font-bold">
             {product.name}
@@ -61,9 +52,7 @@ export default function CartEntry({
 
           <div className="flex items-center gap-3">
             Total: {formatPrice(product.price * quantity)}
-            {isPending && (
-              <span className="loading loading-spinner loading-sm" />
-            )}
+            {isPending && <span className="loading loading-spinner loading-sm" />}
           </div>
         </div>
       </div>

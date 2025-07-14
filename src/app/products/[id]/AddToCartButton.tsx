@@ -7,10 +7,7 @@ interface IAddToCartButtonProps {
   incrementProductQuantity: (productId: string) => Promise<void>;
 }
 
-export default function AddToCartButton({
-  productId,
-  incrementProductQuantity,
-}: IAddToCartButtonProps) {
+export default function AddToCartButton({ productId, incrementProductQuantity }: IAddToCartButtonProps) {
   const [isPending, startTransition] = useTransition();
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -44,9 +41,7 @@ export default function AddToCartButton({
         </svg>
       </button>
       {isPending && <span className="loading loading-spinner loading-md" />}
-      {!isPending && isSuccess && (
-        <span className="text-success">Added to Cart</span>
-      )}
+      {!isPending && isSuccess && <span className="text-success">Added to Cart</span>}
     </div>
   );
 }

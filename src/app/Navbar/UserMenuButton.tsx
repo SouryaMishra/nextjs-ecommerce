@@ -39,23 +39,14 @@ export default function UserMenuButton({ session }: IUserMenuButtonProps) {
           </svg>
         )}
       </div>
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu rounded-box menu-sm z-30 mt-3 w-52 bg-base-100 p-2 shadow"
-      >
+      <ul tabIndex={0} className="dropdown-content menu rounded-box menu-sm z-30 mt-3 w-52 bg-base-100 p-2 shadow">
         <li>
           {user ? (
-            <button
-              className="btn-ghost btn place-content-center"
-              onClick={() => signOut({ callbackUrl: "/" })}
-            >
+            <button className="btn-ghost btn place-content-center" onClick={() => signOut({ callbackUrl: "/" })}>
               Sign Out
             </button>
           ) : (
-            <button
-              className="btn-ghost btn place-content-center"
-              onClick={() => signIn()}
-            >
+            <button className="btn-ghost btn place-content-center" onClick={() => signIn()}>
               Sign In
             </button>
           )}

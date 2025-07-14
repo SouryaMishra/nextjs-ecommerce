@@ -44,12 +44,7 @@ export default async function AddProductPage() {
     <div>
       <h1 className="mb-3 text-lg font-bold">Add product</h1>
       <form action={addProduct}>
-        <input
-          required
-          name="name"
-          placeholder="Name"
-          className="input-bordered input mb-3 w-full"
-        />
+        <input required name="name" placeholder="Name" className="input-bordered input mb-3 w-full" />
         <textarea
           required
           name="description"
@@ -63,13 +58,7 @@ export default async function AddProductPage() {
           placeholder="Image URL"
           className="input-bordered input mb-3 w-full"
         />
-        <input
-          required
-          type="number"
-          name="price"
-          placeholder="Price"
-          className="input-bordered input mb-3 w-full"
-        />
+        <input required type="number" name="price" placeholder="Price" className="input-bordered input mb-3 w-full" />
         <FormSubmitButton className="btn-block">Add Product</FormSubmitButton>
       </form>
     </div>
