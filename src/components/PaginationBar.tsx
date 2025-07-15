@@ -29,8 +29,10 @@ export default function PaginationBar({ currentPage, totalPages }: IPaginationBa
 
   return (
     <div className="flex justify-center">
-      <nav className="join hidden sm:block">{numberedPageItems}</nav>
-      <nav className="join block sm:hidden">
+      <nav aria-label="Pagination navigation" className="join hidden sm:block">
+        {numberedPageItems}
+      </nav>
+      <nav aria-label="Pagination navigation" className="join block sm:hidden">
         {currentPage > 1 && (
           <Link href={"?page=" + (currentPage - 1)} className="join-item btn" aria-label="Go to previous page">
             «
