@@ -11,22 +11,40 @@ export async function setProductQuantity(productId: string, quantity: number) {
 
   if (quantity === 0) {
     if (itemInCart) {
-      await prisma.cartItem.delete({
-        where: { id: itemInCart.id },
+      // Relation query to delete the cart item over the cart model.
+      // This ensures the updatedAt timestamp of a cart to be updated when its cart item is deleted.
+      await prisma.cart.update({
+        where: { id: cart.id },
+        data: {
+          items: {
+            delete: { id: itemInCart.id },
+          },
+        },
       });
     }
   } else {
     if (itemInCart) {
-      await prisma.cartItem.update({
-        where: { id: itemInCart.id },
-        data: { quantity },
+      await prisma.cart.update({
+        where: { id: cart.id },
+        data: {
+          items: {
+            update: {
+              where: { id: itemInCart.id },
+              data: { quantity },
+            },
+          },
+        },
       });
     } else {
-      await prisma.cartItem.create({
+      await prisma.cart.update({
+        where: { id: cart.id },
         data: {
-          cartId: cart.id,
-          productId,
-          quantity: 1,
+          items: {
+            create: {
+              productId,
+              quantity,
+            },
+          },
         },
       });
     }

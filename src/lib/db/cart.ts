@@ -98,6 +98,7 @@ export async function mergeAnonymousCartWithUserCart(userId: string) {
     include: { items: true },
   });
 
+  // All the changes are rolled back if the transaction throws error during any database operation
   await prisma.$transaction(async (tx) => {
     if (userCart) {
       const mergedCartItems = mergeCartItems(localCart.items, userCart.items);
@@ -108,13 +109,19 @@ export async function mergeAnonymousCartWithUserCart(userId: string) {
         },
       });
 
-      await tx.cartItem.createMany({
-        data: mergedCartItems.map((item) => ({
-          // Exclude id as new id will be assigned on creation
-          cartId: userCart.id, // Set cart id to user cart's id
-          productId: item.productId,
-          quantity: item.quantity,
-        })),
+      await tx.cart.update({
+        where: { id: userCart.id },
+        data: {
+          items: {
+            createMany: {
+              data: mergedCartItems.map((item) => ({
+                // Exclude id as new id will be assigned on creation
+                productId: item.productId,
+                quantity: item.quantity,
+              })),
+            },
+          },
+        },
       });
     } else {
       await tx.cart.create({
